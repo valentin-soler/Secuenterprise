@@ -1,4 +1,4 @@
-## Repartition des machines
+# Repartition des machines
 
 - 2 Machine Client (1 Debian + 1 Rocky Linux)
 - 1 Machine Zabbix
