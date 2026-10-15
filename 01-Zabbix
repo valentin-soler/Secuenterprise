@@ -44,3 +44,11 @@ Pensez à remplacer le mot de passe par le votre.
 ```GRANT ALL PRIVILEGES ON zabbix.* TO 'zabbix'@'localhost';```
 
 ```QUIT;```
+
+Nous allons maintenant importer la base de donnée dans MariaDB, ce template nous évite de crée les différente tables et colonnes à la mains.
+
+```zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mariadb --default-character-set=utf8mb4 -uzabbix -p zabbix```
+
+Cela peut prendre un peu de temps, vous devez bien attendre que l'invite de commande sois de retours et qu'il n'y ai aucune erreur pour que l'importation sois bien faites.
+
+![Capture import DB](img/Capture%20d'écran_20261015_114406.png)
