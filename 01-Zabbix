@@ -1,0 +1,33 @@
+# Installation de Zabbix (Server + Agent)
+
+## Installation de Zabbix server
+
+Nous allons installer Zabbix server sur une machine sous Debian 13 :
+J'ai fait le choix de prendre la 7.0 LTS et non 7.4 pour des raisons de maintenance, une version LTS étant supporté plus longtemps et plus "stable"
+
+### Mise à jour du système et installation des prérequies
+
+```apt update & apt full-upgrade -y```
+
+```apt install -y wget ca-certificates```
+
+### Installation des dépots de Zabbix (dans mon cas 7.0 LTS)
+
+```wget https://repo.zabbix.com/zabbix/7.0/debian/pool/main/z/zabbix-release/zabbix-release_latest_7.0+debian13_all.deb```
+
+```dpkg -i zabbix-release_latest_7.0+debian13_all.deb```
+
+```apt update```
+
+### Installation de MariaDB && Zabbix
+
+Zabbix à besoin de MariaDB pour fonctionner, cela permet de stocker les données de la DB de Zabbix.
+
+```apt install -y mariadb-server apache2 zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-sql-scripts zabbix-agent2```
+
+```systemctl enable --now mariadb```
+
+### Installation de la base de données de Zabbix.
+
+Zabbix donne un template de la base de donnée à intégré dans MariaDB afin que Zabbix puisse fonctionner.
+
