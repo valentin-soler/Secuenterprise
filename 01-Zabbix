@@ -27,7 +27,20 @@ Zabbix à besoin de MariaDB pour fonctionner, cela permet de stocker les donnée
 
 ```systemctl enable --now mariadb```
 
+```mariadb-secure-installation``
+
 ### Installation de la base de données de Zabbix.
 
 Zabbix donne un template de la base de donnée à intégré dans MariaDB afin que Zabbix puisse fonctionner.
 
+```mariadb -u root -p ```
+
+```CREATE DATABASE zabbix CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;```
+
+Pensez à remplacer le mot de passe par le votre.
+
+```CREATE USER 'zabbix'@'localhost' IDENTIFIED BY 'votre_mot-de-passe';```
+
+```GRANT ALL PRIVILEGES ON zabbix.* TO 'zabbix'@'localhost';```
+
+```QUIT;```
