@@ -91,4 +91,16 @@ Nous allons maintenant changer le mot de passe par défaut en passant pas "Param
 
 Nous pouvons maintenant passer à l'installation de l'Agent sur nos machine client
 
-## Installation de l'Agent Zabbix
+## Installation & Configuration de l'Agent Zabbix sous Debian 13
+
+### Installation de l'Agent
+
+Pour l'installation de l'Agent sur Debian 13, tout comme le serveur nous avons besoin d'installer le dépots, mais cette fois nous allons installer seulement l'agents.
+
+```wget https://repo.zabbix.com/zabbix/7.0/debian/pool/main/z/zabbix-release/zabbix-release_latest_7.0+debian13_all.deb```
+
+```dpkg -i zabbix-release_latest_7.0+debian13_all.deb```
+
+```apt update```
+
+```apt install -y zabbix-agent2```
