@@ -104,3 +104,36 @@ Pour l'installation de l'Agent sur Debian 13, tout comme le serveur nous avons b
 ```apt update```
 
 ```apt install -y zabbix-agent2```
+
+### Configuration de l'agent
+
+Nous allons maintenant configurer l'agent afin qu'il communique avec notre serveur Zabbix.
+Le choix du nom de la machine doit correspondre avec le nom que vous allez lui donner sur votre serveur Zabbix, sinon cela ne fonctionnera pas
+
+Dans `/etc/zabbix/zabbix_agent2.conf`, vous devez modifier les 3 champs suivants:
+
+- Server (`Server=<ip de votre serveur>`)
+- Server Active (`ServerActive=<ip de votre serveur>`)
+- Hostname (`Hostname=nom-de-votre-machine`)
+
+Nous pouvons maintenant démarré l'agent:
+
+`systemctl enable --now zabbix-agent2`
+
+### Création de l'hote sur notre serveur
+
+Pour cela, vous devez allez dans `Collecte de données --> Hôtes --> Crée un hôte`
+
+![Page Hôtes](img/Capture%20d'écran_20261015_133109.png)
+
+Vous allez maintenant renseigner le nom de votre hôte (que vous avez défini précédament), son groupe, le moyen de connection via l'agent et son modéle de recupération de log
+
+![Page add Host 1](img/Capture%20d'écran_20261015_133618.png)
+
+Il va maintenant apparaitre dans la liste de vos hôtes. Vous devez faire cette manipulation pour chaqu'un de vos hôtes.
+
+![Page Host avec 1 Hote](img/Capture%20d'écran_20261015_133717.png)
+
+Une fois tout vos hôtes mis, vous devriez les voirs apparaitre dans hôte
+![Page avec tout les hotes](img/Capture%20d'écran_20261015_133717.png)
+![Page d'acceuil](img/Capture%20d'écran_20261015_134840.png)
