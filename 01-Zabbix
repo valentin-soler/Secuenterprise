@@ -53,7 +53,7 @@ Cela peut prendre un peu de temps, vous devez bien attendre que l'invite de comm
 
 ![Capture import DB](img/Capture%20d'écran_20261015_114406.png)
 
-
+Vous devez renseignez le MDP de votre DB dans /etc/zabbix/zabbix_server.conf (DBPassword)
 ### Démarrage de Zabbix et son interface web
 
 ```systemctl enable --now zabbix-server zabbix-agent2 apache2 ```
@@ -63,21 +63,32 @@ Cela peut prendre un peu de temps, vous devez bien attendre que l'invite de comm
 ### Configuration de Zabbix
 
 Maintenant que notre serveur Zabbix est installé, nous devons le configuré, pour cela nous pouvons le faire via son interface web disponible sur http://<votre-ip>/zabbix
-
 ![1er page du setup](img/Capture%20d'écran_20261015_115726.png)
 
 Vérifié que tout les prérequis sois OK
-
 ![Page des pré-requis](img/Capture%20d'écran_20261015_115946.png)
 
 Vous pouvez maintenant renseigner les info de votre base de donnée afin que Zabbix puisse s'y connecter.
-
 ![Page de config. DB](img/Capture%20d'écran_20261015_121252.png)
 
 Vous pouvez maintenant donner un nom et choisir le thème de l'interface.
-
 ![Page confg. nom + theme](img/Capture%20d'écran_20261015_121351.png)
 
 Et voila votre serveur est installé !
-
 ![Page final config.](img/Capture%20d'écran_20261015_121454.png)
+
+### Premiére connection + Changement des identifiant par défaut
+
+Vous allez maintenant tomber sur cette page:
+![Page de login](img/Capture%20d'écran_20261015_121742.png)
+
+Vous devez utiliser le combot Admin/zabbix pour vous connecter (attention le A majuscule doit bien être mis !)
+Vous allez alors tomber sur la page principal de Zabbix 
+![Panel admin](img/Capture%20d'écran_20261015_122326.png)
+
+Nous allons maintenant changer le mot de passe par défaut en passant pas "Paramètres utilisateur -> Profil -> Changer le mot de passe"
+![Changement de MDP](img/Capture%20d'écran_20261015_122532.png)
+
+Nous pouvons maintenant passer à l'installation de l'Agent sur nos machine client
+
+## Installation de l'Agent Zabbix
