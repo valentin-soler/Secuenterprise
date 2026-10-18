@@ -46,3 +46,39 @@ Vous pouvez maintenant démarrer ElasticSearch
 ```
 systemctl enable --now elasticsearch
 ```
+
+Vous pouvez obtenir un nouveau mot de passe pour Elastic via la commande :
+```
+/usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic
+```
+
+### Configuration de Kibana
+
+Dans le fichier `/etc/kibana/kibana.yml` vous devez définir la valeur d'écoute de Kibana
+```
+server.host: "0.0.0.0"
+```
+
+Vous pouvez maintenant démarrer le service de Kibana
+```
+systemctl enable --now kibana
+```
+
+En allant sur `<ip-server>:5601` vous devriez tomber sur cette page qui vous demande un jeton d'enregistrement
+
+![Page jeton enregistrement](img/Capture%20d'écran_20261018_211753.png)
+
+Vous pouvez obtenir ce jeton grace à la commande `/usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana`
+
+On va aussi vous demandez un 2nd code, que vous pouvez obtenir grace à la commande `/usr/share/kibana/bin/kibana-verification-code`
+
+![Page demande de code Kibana](img/Capture%20d'écran_20261018_212139.png)
+
+Vous pouvez maintenant patienté le temps qu'Elastic et Kibana finissent de démarré et de se configurer
+
+![Page fin de config](img/Capture%20d'écran_20261018_212322.png)
+
+Une fois fini vous devriez tombé sur cette page de connection, pour vous connecté vous pouvez utilisé vos identifiant Elastic
+
+![Page login Kibana](img/Capture%20d'écran_20261018_212609.png)
+![Page acceuil Kibana](img/Capture%20d'écran_20261018_212817.png)
