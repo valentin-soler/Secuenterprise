@@ -137,3 +137,6 @@ Il va maintenant apparaitre dans la liste de vos hôtes. Vous devez faire cette 
 Une fois tout vos hôtes mis, vous devriez les voirs apparaitre dans hôte
 ![Page avec tout les hotes](img/Capture%20d'écran_20261015_133717.png)
 ![Page d'acceuil](img/Capture%20d'écran_20261015_134840.png)
+
+Exemple d'alerte
+![Exemple Alerte](img/Capture%20d'écran_20261019_183556.png)
