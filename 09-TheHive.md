@@ -97,3 +97,4 @@ sudo docker compose up -d
 Et voila !
 
 ![](img/Capture%20d'écran_20261019_190319.png)
+![](img/Capture%20d'écran_20261019_190608.png)
