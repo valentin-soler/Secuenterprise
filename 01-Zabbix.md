@@ -27,7 +27,7 @@ Zabbix à besoin de MariaDB pour fonctionner, cela permet de stocker les donnée
 
 ```systemctl enable --now mariadb```
 
-```mariadb-secure-installation``
+```mariadb-secure-installation```
 
 ### Installation de la base de données de Zabbix.
 
