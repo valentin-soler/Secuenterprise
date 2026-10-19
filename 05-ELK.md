@@ -103,8 +103,56 @@ output {
   }
 }
 ```
+Vous devez intégré l'utilisateur logstash dans le groupe de Elastic
+```
+usermod -aG elasticsearch logstash
+```
 
 Vous pouvez lancer directement logstach via son service 
 ```
 systemctl enable --now logstash
 ```
+
+## Installation de FileBeat
+### Installation des dépôt et prérequis
+
+Vous devez avoir `curl gnupg ca-certificates`
+```
+apt install -y curl gnupg ca-certificates
+install -d -m 0755 /etc/apt/keyrings
+curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | gpg --dearmor -o /etc/apt/keyrings/elasticsearch.gpg
+chmod 644 /etc/apt/keyrings/elasticsearch.gpg
+echo "deb [signed-by=/etc/apt/keyrings/elasticsearch.gpg] https://artifacts.elastic.co/packages/9.x/apt stable main" > /etc/apt/sources.list.d/elastic-9.x.list
+apt update
+apt install -y filebeat
+```
+
+### Configuration de Filebeat
+
+Fichier de config : ```/etc/filebeat/filebeat.yml```
+Dans ce fichier, vous pouvez commenter `output.elasticsearch` & `setup.kibana`
+Et remplir `output.logstash`
+
+![output.logstash](img/Capture%20d'écran_20261019_102648.png)
+
+On peut maintenant activé le module pour récupéré les log systèmes et tester notre configuration
+```
+filebeat modules enable system
+```
+Il faut modifier le fichier ```/etc/filebeat/modules.d/system.yml``` pour activé les modules en remplacent `false` par `true` & L'activation de la récupération depuis journald.
+
+![Capture config system](img/Capture%20d'écran_20261019_104546.png)
+```
+filebeat test config
+filebeat test output
+```
+![](img/Capture%20d'écran_20261019_104001.png)
+
+Et on peut démarré Filebeat
+```
+systemctl enable --now filebeat
+```
+
+Nous avons bien les logs qui remontes
+
+![](img/Capture%20d'écran_20261019_110109.png)
