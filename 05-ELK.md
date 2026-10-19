@@ -82,3 +82,29 @@ Une fois fini vous devriez tombé sur cette page de connection, pour vous connec
 
 ![Page login Kibana](img/Capture%20d'écran_20261018_212609.png)
 ![Page acceuil Kibana](img/Capture%20d'écran_20261018_212817.png)
+
+### Configuration de Logstash
+
+Vous devez renseigner la configuration de votre pipeline afin que les fichiers arrivent bien sur votre serveur `/etc/logstash/conf.d/beats.conf`
+```
+input {
+  beats {
+    port => 5044
+  }
+}
+
+output {
+  elasticsearch {
+    hosts => ["https://localhost:9200"]
+    user => "elastic"
+    password => "REMPLACE_PAR_LE_MOT_DE_PASSE_ELASTIC"
+    ssl_certificate_authorities => ["/etc/elasticsearch/certs/http_ca.crt"]
+    index => "filebeat-%{+YYYY.MM.dd}"
+  }
+}
+```
+
+Vous pouvez lancer directement logstach via son service 
+```
+systemctl enable --now logstash
+```
